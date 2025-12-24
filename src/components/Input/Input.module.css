@@ -1,0 +1,22 @@
+.inputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 12px;
+    width: 20px;
+    height: 20px;
+}
+
+.inputSearch {
+    width: 100%;
+    padding: 12px 12px 12px 40px; /* отступ слева под иконку */
+    border: 2px solid #7B6EF6;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+}

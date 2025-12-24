@@ -1,20 +1,26 @@
 import './App.css';
-import { Headling } from './components/Headling/Headling';
+import { Heading } from './components/Heading/Heading';
 import { Button } from './components/Button/Button';
 import { Paragraph } from './components/Paragraph/Paragraph';
+import { Input } from './components/Input/Input';
+import { Layout } from './components/Layout/Layout';
+
 
 function App() {
-    const headling = 'Поиск';
-    const name = 'Искать';
-    const paragraph =
+    const heading = 'Поиск';
+    const buttonText = 'Искать';
+    const text =
         'Введите название фильма, сериала или мультфильма для поиска и добавления в избранное.';
+    const inputText = 'Введите текст...';
 
     return (
-        <div>
-            <Headling headling={headling} />
-            <Paragraph paragraph={paragraph} />
-            <Button name={name} />
-        </div>
+        <main className="app">
+            <Layout/>
+            <Heading heading={heading} />
+            <Paragraph paragraph={text}/>
+            <Input placeholder={inputText}/>
+            <Button name={buttonText}/>
+        </main>
     );
 }
 
