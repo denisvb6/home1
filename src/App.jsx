@@ -4,6 +4,7 @@ import { Button } from './components/Button/Button';
 import { Paragraph } from './components/Paragraph/Paragraph';
 import { Input } from './components/Input/Input';
 import { Layout } from './components/Layout/Layout';
+import { MoviesList } from './components/MoviesList/MoviesList';
 
 
 function App() {
@@ -18,8 +19,11 @@ function App() {
             <Layout/>
             <Heading heading={heading} />
             <Paragraph paragraph={text}/>
-            <Input placeholder={inputText}/>
-            <Button name={buttonText}/>
+            <div className='inputButton'>
+                <Input placeholder={inputText}/>
+                <Button name={buttonText}/>
+            </div>
+            <MoviesList/>
         </main>
     );
 }

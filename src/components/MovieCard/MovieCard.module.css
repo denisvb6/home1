@@ -1,0 +1,41 @@
+.movie-card {
+  width: 200px;
+  background: #201c1c;
+  border-radius: 12px;
+  border: 5px solid #201c1c;
+  overflow: hidden;
+  color: #fff;
+  font-family: inherit;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.movie-card__poster-wrapper {
+  position: relative;
+}
+
+.movie-card__poster {
+  width: 100%;
+  /* object-fit: cover; */
+  display: block;
+}
+
+.movie-card__rating-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: flex;
+  align-items: center;
+  background: rgba(32, 28, 28, 0.8); /* затемнённый фон */
+  border-radius: 8px;
+  border: 1px solid #F5C518;
+  padding: 2px 8px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  gap: 4px;
+}
+
+.movie-card__info {
+    text-align: left;
+    padding-left: 8px;
+}
