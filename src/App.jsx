@@ -1,10 +1,11 @@
-import './App.css';
+import styles from './App.module.css';
 import { Heading } from './components/Heading/Heading';
 import { Button } from './components/Button/Button';
 import { Paragraph } from './components/Paragraph/Paragraph';
 import { Input } from './components/Input/Input';
 import { Layout } from './components/Layout/Layout';
 import { MoviesList } from './components/MoviesList/MoviesList';
+import cn from 'classnames';
 
 
 function App() {
@@ -15,11 +16,11 @@ function App() {
     const inputText = 'Введите текст...';
 
     return (
-        <main className="app">
+        <main className={cn(styles['app'])}>
             <Layout/>
-            <Heading heading={heading} />
+            <Heading heading={heading}/>
             <Paragraph paragraph={text}/>
-            <div className='inputButton'>
+            <div className={cn(styles['inputButton'])}>
                 <Input placeholder={inputText}/>
                 <Button name={buttonText}/>
             </div>

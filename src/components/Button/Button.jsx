@@ -1,4 +1,5 @@
 import styles from './Button.module.css';
+import cn from 'classnames';
 
 export const Button = ({name}) => {
     const searchFilm = () => {
@@ -6,6 +7,6 @@ export const Button = ({name}) => {
     };
 
     return (
-        <button className={styles['button']} onClick={searchFilm}>{name}</button>
+        <button className={cn(styles['button'])} onClick={searchFilm}>{name}</button>
     );
 };

@@ -1,5 +1,6 @@
 import { MovieCard } from '../MovieCard/MovieCard';
 import styles from './MoviesList.module.css';
+import cn from 'classnames';
 
 // Пример получения списка фильмов из бекенда (например, через useEffect, fetch или RTK Query)
 // Здесь для примера — статично
@@ -56,7 +57,7 @@ const movies = [
 
 export function MoviesList() {
     return (
-        <div className={styles['movies-list']}>
+        <div className={cn(styles['movies-list'])}>
             {movies.map((movie) => (
                 <MovieCard
                     key={movie.id}
