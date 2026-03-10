@@ -4,11 +4,25 @@ import entryIcon from '/src/assets/entryIcon.png';
 import cn from 'classnames';
 
 export const Layout = ({ currentUser, setCurrentUser }) => {
-
     const handleLogout = () => {
-    // Логика выхода из системы
-    setCurrentUser(null);
-  };
+        if (currentUser) {
+            // Получаем профили из localStorage
+            const profiles = JSON.parse(localStorage.getItem('profiles')) || [];
+
+            // Находим профиль текущего пользователя и сбрасываем isLogined
+            const updatedProfiles = profiles.map((profile) =>
+                profile.username === currentUser
+                    ? { ...profile, isLogined: false }
+                    : profile
+            );
+
+            // Сохраняем обновленные профили обратно в localStorage
+            localStorage.setItem('profiles', JSON.stringify(updatedProfiles));
+        }
+
+        // Сбрасываем текущего пользователя
+        setCurrentUser(null);
+    };
 
     return (
         <nav className={cn(styles['layout'])}>
@@ -30,7 +44,11 @@ export const Layout = ({ currentUser, setCurrentUser }) => {
                 <li>
                     {currentUser && <li>{currentUser}</li>}
                     <li>
-                        {currentUser ? (<a href="#">Выйти</a>) : (<a href="#">Войти</a>)}
+                        {currentUser ? (
+                            <a href="#">Выйти</a>
+                        ) : (
+                            <a href="#">Войти</a>
+                        )}
                     </li>
                 </li>
                 <img

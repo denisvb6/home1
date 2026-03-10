@@ -7,9 +7,12 @@ import { Layout } from './components/Layout/Layout';
 import { MoviesList } from './components/MoviesList/MoviesList';
 import cn from 'classnames';
 import { FilmForm } from './components/LoginForm/LoginForm';
+import { useState } from 'react';
 
 
 function App() {
+    const [currentUser, setCurrentUser] = useState(null);
+
     // const heading = 'Поиск';
     const buttonText = 'Искать';
     const text =
@@ -18,7 +21,7 @@ function App() {
 
     return (
         <main className={cn(styles['app'])}>
-            <Layout/>
+            <Layout currentUser={currentUser} setCurrentUser={setCurrentUser}/>
             <Heading heading={'Поиск'}/>
             <Paragraph paragraph={text}/>
             <div className={cn(styles['inputButton'])}>
@@ -27,7 +30,7 @@ function App() {
             </div>
             <MoviesList/>
 
-            <FilmForm/>
+            <FilmForm setCurrentUser={setCurrentUser}/>
         </main>
     );
 }

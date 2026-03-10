@@ -2,12 +2,10 @@ import { LoginInput } from '../LoginInput/LoginInput';
 import { LoginButton } from '../LoginButton/LoginButton';
 import styles from './LoginForm.module.css';
 import { useRef, useState } from 'react';
-import { Layout } from '../Layout/Layout';
 
 
-export const FilmForm = () => {
+export const FilmForm = ({setCurrentUser}) => {
     const [username, setUsername] = useState('');
-    const [currentUser, setCurrentUser] = useState(null);
     const buttonRef = useRef();
     const usernameRef = useRef();
 
@@ -33,8 +31,6 @@ export const FilmForm = () => {
 
     return (
         <div>
-            <Layout currentUser={currentUser} setCurrentUser={setCurrentUser}/>
-            
             <form className={styles['loginForm']} onSubmit={loginForm}>
                 <h1 className={styles['loginHeading']}>Вход</h1>
                 <LoginInput
