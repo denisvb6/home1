@@ -6,10 +6,11 @@ import { Input } from './components/Input/Input';
 import { Layout } from './components/Layout/Layout';
 import { MoviesList } from './components/MoviesList/MoviesList';
 import cn from 'classnames';
+import { FilmForm } from './components/LoginForm/LoginForm';
 
 
 function App() {
-    const heading = 'Поиск';
+    // const heading = 'Поиск';
     const buttonText = 'Искать';
     const text =
         'Введите название фильма, сериала или мультфильма для поиска и добавления в избранное.';
@@ -18,13 +19,15 @@ function App() {
     return (
         <main className={cn(styles['app'])}>
             <Layout/>
-            <Heading heading={heading}/>
+            <Heading heading={'Поиск'}/>
             <Paragraph paragraph={text}/>
             <div className={cn(styles['inputButton'])}>
                 <Input placeholder={inputText}/>
                 <Button name={buttonText}/>
             </div>
             <MoviesList/>
+
+            <FilmForm/>
         </main>
     );
 }
