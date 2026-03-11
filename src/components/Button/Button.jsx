@@ -1,11 +1,22 @@
 import styles from './Button.module.css';
+import cn from 'classnames';
+import { forwardRef } from 'react';
 
-export const Button = ({name}) => {
+export const Button = forwardRef((props, ref) => {
+    const { name, ...restProps } = props;
+
     const searchFilm = () => {
         console.log('Поиск фильма');
     };
 
     return (
-        <button className={styles['button']} onClick={searchFilm}>{name}</button>
+        <button
+            ref={ref}
+            {...restProps}
+            className={cn(styles['button'])}
+            onClick={searchFilm}
+        >
+            {name}
+        </button>
     );
-};
+});

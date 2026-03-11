@@ -16,8 +16,22 @@
 }
 
 .list li {
-    margin: 0px 25px 0px 0px;
+    display: flex;
+    flex-direction: row;
+
+    margin: 0px 10px 0px 10px;
     list-style: none;
+}
+
+.userSection {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.username {
+    color: #7B6EF6;
+    font-weight: 500;
 }
 
 li a {

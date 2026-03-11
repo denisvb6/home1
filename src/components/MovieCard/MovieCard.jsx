@@ -1,10 +1,11 @@
 import styles from './MovieCard.module.css';
+import cn from 'classnames';
 
 export const MovieCard = ({ poster, title, rating }) => (
-    <div className={styles['movie-card']}>
-        <div className={styles['movie-card__poster-wrapper']}>
-            <img className={styles['movie-card__poster']} src={poster} alt={title} />
-            <div className={styles['movie-card__rating-badge']}>
+    <div className={cn(styles['movie-card'])}>
+        <div className={cn(styles['movie-card__poster-wrapper'])}>
+            <img className={cn(styles['movie-card__poster'])} src={poster} alt={title} />
+            <div className={cn(styles['movie-card__rating-badge'])}>
                 <svg
                     width="16"
                     height="16"
@@ -20,7 +21,7 @@ export const MovieCard = ({ poster, title, rating }) => (
                 <span>{rating}</span>
             </div>
         </div>
-        <div className={styles['movie-card__info']}>
+        <div className={cn(styles['movie-card__info'])}>
             <h5>{title}</h5>
         </div>
     </div>
