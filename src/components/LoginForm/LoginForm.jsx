@@ -3,28 +3,40 @@ import { LoginButton } from '../LoginButton/LoginButton';
 import styles from './LoginForm.module.css';
 import { useRef, useState } from 'react';
 
-
-export const FilmForm = ({setCurrentUser}) => {
+export const FilmForm = ({ setCurrentUser }) => {
     const [username, setUsername] = useState('');
     const buttonRef = useRef();
     const usernameRef = useRef();
 
-
     const loginForm = (event) => {
         event.preventDefault();
 
-        // Извлекаем существующие профили
+        // Проверка на пустое имя
+        if (!username.trim()) {
+            alert('Введите имя пользователя');
+            return;
+        }
+
         const profiles = JSON.parse(localStorage.getItem('profiles')) || [];
 
-        // Создаем новый профиль
-        const newProfile = { username, isLogined: true };
+        // Сбрасываем isLogined для всех профилей
+        const updatedProfiles = profiles.map((profile) => ({
+            ...profile,
+            isLogined: false
+        }));
 
-        // Обновляем массив профилей
-        profiles.push(newProfile);
+        const existingProfileIndex = updatedProfiles.findIndex(
+            (profile) => profile.username === username
+        );
 
-        // Сохраняем обратно в localStorage
-        localStorage.setItem('profiles', JSON.stringify(profiles));
-        
+        if (existingProfileIndex !== -1) {
+            updatedProfiles[existingProfileIndex].isLogined = true;
+        } else {
+            updatedProfiles.push({ username, isLogined: true });
+        }
+
+        localStorage.setItem('profiles', JSON.stringify(updatedProfiles));
+
         setUsername(() => '');
         setCurrentUser(() => username); // Обновляем состояние текущего пользователя
     };
@@ -40,7 +52,9 @@ export const FilmForm = ({setCurrentUser}) => {
                     placeholder="Имя пользователя..."
                     onChange={(e) => setUsername(e.target.value)}
                 />
-                <LoginButton type="submit" ref={buttonRef}>Войти в профиль</LoginButton>
+                <LoginButton type="submit" ref={buttonRef}>
+                    Войти в профиль
+                </LoginButton>
             </form>
         </div>
     );

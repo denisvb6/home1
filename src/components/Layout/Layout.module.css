@@ -23,6 +23,17 @@
     list-style: none;
 }
 
+.userSection {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.username {
+    color: #7B6EF6;
+    font-weight: 500;
+}
+
 li a {
     text-decoration: none;
     color: rgb(201, 193, 193);

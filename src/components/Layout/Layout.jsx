@@ -4,7 +4,9 @@ import entryIcon from '/src/assets/entryIcon.png';
 import cn from 'classnames';
 
 export const Layout = ({ currentUser, setCurrentUser }) => {
-    const handleLogout = () => {
+    const handleLogout = (event) => {
+        event.preventDefault(); // Предотвращаем переход по ссылке
+
         if (currentUser) {
             // Получаем профили из localStorage
             const profiles = JSON.parse(localStorage.getItem('profiles')) || [];
@@ -41,22 +43,26 @@ export const Layout = ({ currentUser, setCurrentUser }) => {
                 <li>
                     <a href="#">Мои фильмы</a>
                 </li>
-                <li>
-                    {currentUser && <li>{currentUser}</li>}
-                    <li>
-                        {currentUser ? (
-                            <a href="#">Выйти</a>
-                        ) : (
-                            <a href="#">Войти</a>
-                        )}
+                {currentUser && (
+                    <li className={cn(styles['username'])}>
+                        {currentUser}
                     </li>
+                )}
+                <li>
+                    {currentUser ? (  
+                        <a href="#" onClick={handleLogout}>Выйти</a>
+                        
+                    ) : (
+                        <a href="#">Войти</a>
+                    )}
                 </li>
-                <img
-                    src={entryIcon}
-                    alt="Значок Войти"
-                    className={cn(styles['entryIcon'])}
-                    onClick={handleLogout}
-                />
+                <li>
+                    <img
+                        src={entryIcon}
+                        alt="Значок Войти"
+                        className={cn(styles['entryIcon'])}
+                    />
+                </li>
             </ul>
         </nav>
     );
