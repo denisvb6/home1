@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from 'react';
 
-export const UserContext = createContext({
+const UserContext = createContext({
     username: '',
     isLogined: Boolean
 });
@@ -11,7 +11,7 @@ export const UserProvider = ({ children }) => {
     useEffect(() => {
         const storedValue = localStorage.getItem('profiles');
         if (storedValue) {
-            setUserValue(JSON.parse(storedValue));
+            // setUserValue(JSON.parse(storedValue));
         }
     }, []);
 
