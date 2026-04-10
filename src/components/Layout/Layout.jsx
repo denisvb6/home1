@@ -2,7 +2,6 @@ import styles from './Layout.module.css';
 import bookmarkIcon from '/src/assets/bookmarkIcon.png';
 import entryIcon from '/src/assets/entryIcon.png';
 import cn from 'classnames';
-import { UserContext } from '../../UserContext/UserContext';
 
 export const Layout = ({ currentUser, setCurrentUser }) => {
     const handleLogout = (event) => {
