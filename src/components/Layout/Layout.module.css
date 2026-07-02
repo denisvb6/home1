@@ -1,11 +1,16 @@
 .layout {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
 
-    width: 115;
-    height: 24;
+    margin: 80px 150px; 
+    height: 100vh;
+}
 
-    margin-top: 10px;
+.nav {
+    display: flex; /* Устанавливаем флексбокс для выравнивания детей в одну линию */
+    align-items: center; /* Вертикальное выравнивание элементов по центру */
+    justify-content: space-between; /* Распределяем пространство между элементами (или используйте flex-start/flex-end для других эффектов) */
+    padding: 1rem; /* Внешние отступы */
 }
 
 .list {
@@ -23,14 +28,8 @@
     list-style: none;
 }
 
-.userSection {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
 .username {
-    color: #7B6EF6;
+    color: #7b6ef6;
     font-weight: 500;
 }
 
@@ -43,7 +42,24 @@ li a:hover {
     color: rgb(156, 150, 150);
 }
 
+.navlink {
+    color: white;
+}
+
 .entryIcon {
     margin-left: 0;
     height: 18px;
+}
+
+.outlet {
+    flex: 1;
+    /* overflow-y: auto;*/
+    padding: 1rem;
+}
+
+.inputButton {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 16px 0px; /* Внешний отступ сверху, чтобы отделить от предыдущих элементов */
 }

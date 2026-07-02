@@ -2,68 +2,78 @@ import styles from './Layout.module.css';
 import bookmarkIcon from '/src/assets/bookmarkIcon.png';
 import entryIcon from '/src/assets/entryIcon.png';
 import cn from 'classnames';
+import { useContext } from 'react';
+import { UserContext } from '../../UserContext/UserContext';
+import { Outlet, Link, NavLink } from 'react-router-dom';
 
-export const Layout = ({ currentUser, setCurrentUser }) => {
+export const Layout = () => {
+    const { userValue, setUserValue } = useContext(UserContext);
+
     const handleLogout = (event) => {
-        event.preventDefault(); // Предотвращаем переход по ссылке
+        event.preventDefault();
 
-        if (currentUser) {
-            // Получаем профили из localStorage
-            const profiles = JSON.parse(localStorage.getItem('profiles')) || [];
+        setUserValue({ username: '', isLogined: false });
 
-            // Находим профиль текущего пользователя и сбрасываем isLogined
-            const updatedProfiles = profiles.map((profile) =>
-                profile.username === currentUser
-                    ? { ...profile, isLogined: false }
-                    : profile
-            );
+        // Синхронизация с localStorage
+        const profiles = JSON.parse(localStorage.getItem('profiles')) || [];
+        const updatedProfiles = profiles.map((profile) =>
+            profile.username === userValue.username
+                ? { ...profile, isLogined: false }
+                : profile
+        );
 
-            // Сохраняем обновленные профили обратно в localStorage
-            localStorage.setItem('profiles', JSON.stringify(updatedProfiles));
-        }
-
-        // Сбрасываем текущего пользователя
-        setCurrentUser(null);
+        localStorage.setItem('profiles', JSON.stringify(updatedProfiles));
     };
 
     return (
-        <nav className={cn(styles['layout'])}>
-            <div>
+        <div className={cn(styles['layout'])}>
+            <nav className={cn(styles['nav'])}>
+                {/* <div> */}
                 <img
                     src={bookmarkIcon}
                     alt="Значок книжной закладки"
                     className={cn(styles['bookmarkIcon'])}
                 />
-            </div>
-
-            <ul className={cn(styles['list'])}>
-                <li>
-                    <a href="#">Поиск фильмов</a>
-                </li>
-                <li>
-                    <a href="#">Мои фильмы</a>
-                </li>
-                {currentUser && (
-                    <li className={cn(styles['username'])}>
-                        {currentUser}
+                <ul className={cn(styles['list'])}>
+                    <li>
+                        <a href="#">Поиск фильмов</a>
                     </li>
-                )}
-                <li>
-                    {currentUser ? (  
-                        <a href="#" onClick={handleLogout}>Выйти</a>
-                        
-                    ) : (
-                        <a href="#">Войти</a>
+                    <li>
+                        <a href="#">Мои фильмы</a>
+                    </li>
+                    {userValue.isLogined && (
+                        <li className={cn(styles['username'])}>
+                            {userValue.username}
+                        </li>
                     )}
-                </li>
-                <li>
-                    <img
-                        src={entryIcon}
-                        alt="Значок Войти"
-                        className={cn(styles['entryIcon'])}
-                    />
-                </li>
-            </ul>
-        </nav>
+                    <li>
+                        {userValue.isLogined ? (
+                            <NavLink
+                                to="/"
+                                className={({isActive}) => cn(styles['navlink'], {
+                                    [styles.active]: isActive  
+                                })}
+                                onClick={handleLogout}
+                            >
+                                Выйти
+                            </NavLink>
+                        ) : (
+                            <Link to="/login">Войти</Link>
+                        )}
+                    </li>
+                    <li>
+                        <img
+                            src={entryIcon}
+                            alt="Значок Войти"
+                            className={cn(styles['entryIcon'])}
+                        />
+                    </li>
+                </ul>
+                {/* </div> */}
+            </nav>
+            <div className={cn(styles['outlet'])}>
+                <Outlet />
+            </div>
+        </div>
     );
 };
