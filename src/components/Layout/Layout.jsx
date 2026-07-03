@@ -50,15 +50,26 @@ export const Layout = () => {
                         {userValue.isLogined ? (
                             <NavLink
                                 to="/"
-                                className={({isActive}) => cn(styles['navlink'], {
-                                    [styles.active]: isActive  
-                                })}
+                                className={({ isActive }) =>
+                                    cn(styles['navlink'], {
+                                        [styles.active]: isActive
+                                    })
+                                }
                                 onClick={handleLogout}
                             >
                                 Выйти
                             </NavLink>
                         ) : (
-                            <Link to="/login">Войти</Link>
+                            <NavLink
+                                to="/login"
+                                className={({ isActive }) =>
+                                    cn(styles['navlink'], {
+                                        [styles.active]: isActive
+                                    })
+                                }
+                            >
+                                Войти
+                            </NavLink>
                         )}
                     </li>
                     <li>
