@@ -39,7 +39,7 @@ export const Layout = () => {
                         <Link to="#">Поиск фильмов</Link>
                     </li>
                     <li>
-                        <a href="#">Мои фильмы</a>
+                        <Link to="#">Мои фильмы</Link>
                     </li>
                     {userValue.isLogined && (
                         <li className={cn(styles['username'])}>
