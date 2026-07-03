@@ -36,7 +36,7 @@ export const Layout = () => {
                 />
                 <ul className={cn(styles['list'])}>
                     <li>
-                        <a href="#">Поиск фильмов</a>
+                        <Link to="#">Поиск фильмов</Link>
                     </li>
                     <li>
                         <a href="#">Мои фильмы</a>
